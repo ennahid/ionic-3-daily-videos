@@ -1,14 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar color='myorange'>
+        <ion-title *ngIf="!searchbarvisible">
+            <img height="30" style="float:left" src="assets/imgs/inner-logo.png" alt="">
+            <span style="color:white;float:left;margin:3px 0px 0px 5px">&nbsp;V-Mote Videos</span>
+        </ion-title>
+        <ion-buttons *ngIf="!searchbarvisible" end>
+            <button ion-button icon-only (click)=togglesearchbar()>
+                        <ion-icon style="padding: 0px 10px" name="search"></ion-icon>
+                    </button>
+        </ion-buttons>
+        <ion-buttons *ngIf="searchbarvisible" left>
+            <button ion-button icon-only (click)='togglesearchbar()'>
+                            <ion-icon style="padding: 0px 17px" name="arrow-back"></ion-icon>
+                        </button>
+        </ion-buttons>
+        <ion-searchbar autocomplete="on" #mysearch *ngIf="searchbarvisible" [(ngModel)]="searchbar" (search)="searchByKeyword($event)"></ion-searchbar>
+        <!-- <ion-title style="text-align: center">Popular Videos</ion-title> -->
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+    <!-- <ion-list>
+        <ion-item data-id="{{vid.id}}" (click)="gotoplayerpage(vid.id,vid.title)" *ngFor="let vid of videos">
+            <ion-thumbnail item-start>
+                <img src="{{vid.thumbnail_360_url}}">
+            </ion-thumbnail>
+            <h2> {{vid.title }} |...</h2>
+            <p> {{vid.description }}...</p>
+        </ion-item>
+    </ion-list> -->
+    <ion-list [virtualScroll]="videos">
+        <ion-item data-id="{{vid.id}}" (click)="gotoplayerpage(vid.id,vid.title)" *virtualItem="let vid">
+            <ion-thumbnail item-start>
+                <img src="{{vid.thumbnail_360_url}}">
+            </ion-thumbnail>
+            <h2> {{vid.title }} ...</h2>
+            <p> {{vid.description }} ...</p>
+        </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

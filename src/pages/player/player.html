@@ -1,0 +1,44 @@
+<!--
+  Generated template for the PlayerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <!-- <ion-navbar>
+      <ion-title>Player</ion-title>
+  </ion-navbar> -->
+
+</ion-header>
+
+
+<ion-content>
+    <!-- <h2>{{video_link}}</h2> -->
+    <iframe frameborder="0" width="100%" height="200px" [src]="sanitizer.bypassSecurityTrustResourceUrl(video_link)" allowfullscreen></iframe>
+    <div style="display: inline">
+        <h6 style="padding: 5px 5px">{{video_title}}</h6>
+        <!-- <button id="download" ion-button color="primary" outline>Download This Video</button> -->
+        <button id="download" (click)="begindownload()" ion-button color="myorange" round>Download This Video</button>
+    </div>
+    <h4>&nbsp;Related</h4>
+    <hr>
+    <ion-list>
+        <ion-item data-id="{{vid.id}}" (click)="gotoplayerpage(vid.id,vid.title)" *ngFor="let vid of related_videos">
+            <ion-thumbnail item-start>
+                <img src="{{vid.thumbnail_360_url}}">
+            </ion-thumbnail>
+            <h2> {{vid.title }}</h2>
+            <p> {{vid.description }}</p>
+        </ion-item>
+    </ion-list>
+    <!-- <ion-list [virtualScroll]="related_videos">
+        <ion-item data-id="{{vid.id}}" (click)="gotoplayerpage(vid.id,vid.title)" *virtualItem="let vid">
+            <ion-thumbnail item-start>
+                <img src="{{vid.thumbnail_360_url}}">
+            </ion-thumbnail>
+            <h2> {{vid.title }}...</h2>
+            <p> {{vid.description }}...</p>
+        </ion-item>
+    </ion-list> -->
+</ion-content>
