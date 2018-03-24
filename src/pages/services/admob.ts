@@ -12,17 +12,11 @@ export class AdmobSerivce {
 
     showinter() {
         const interstitialConfig: AdMobFreeInterstitialConfig = {
-            // id: 'ca-app-pub-8203097758766986/1995669576',
-            isTesting : true,
+            id: 'ca-app-pub-8203097758766986/1995669576',
         };  
         this.admobFree.interstitial.config(interstitialConfig)
         this.admobFree.interstitial.prepare()
             .then(() => {
-                this.toast.show(`ad shown`, '2000', 'bottom').subscribe(
-                    toast => {
-                      console.log(toast);
-                    }
-                  );
                 this.admobFree.interstitial.show();
             })
             .catch(e => console.log(e));

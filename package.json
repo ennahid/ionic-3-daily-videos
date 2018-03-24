@@ -8,6 +8,7 @@
         "clean": "ionic-app-scripts clean",
         "build": "ionic-app-scripts build",
         "build:prod": "ionic cordova build android --prod --minifyjs --optimizejs",
+        "build:rel": "ionic cordova build android --release --minifyjs --optimizejs",
         "lint": "ionic-app-scripts lint",
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve"
