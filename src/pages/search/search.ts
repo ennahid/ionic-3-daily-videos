@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PlayerPage } from '../player/player';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,Content } from 'ionic-angular';
 import { AdmobSerivce } from '../services/admob';
 
 @IonicPage()
@@ -11,6 +11,7 @@ import { AdmobSerivce } from '../services/admob';
   providers: [AdmobSerivce]
 })
 export class SearchPage {
+  @ViewChild(Content) content: Content;
 
   searchedtext: string;
   searchbar: string;
@@ -26,10 +27,11 @@ export class SearchPage {
   }
 
   doInfinite(infiniteScroll) {
+    this.myadmob.showinter();
     this.videoslength = "";
     // this.navCtrl.push(PlayerPage);
     this.page++;
-    this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=' + this.page + '&limit=100')
+    this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=' + this.page + '&limit=50')
       .subscribe(res => {
         this.more = res;
         for (let child of this.more.list) {
@@ -40,7 +42,6 @@ export class SearchPage {
         // console.log(this.videos);
         // console.log(this.videos.views_total);
       });
-
   }
 
   gotoplayerpage(parms, title, view) {
@@ -52,6 +53,7 @@ export class SearchPage {
   }
 
   searchByKeyword(event) {
+    this.content.scrollToTop();
     this.videoslength = "";
     // this.navCtrl.setRoot(this.navCtrl.getActive().component);
     this.page = 1;
@@ -65,9 +67,10 @@ export class SearchPage {
     this.searchedtext = this.searchedtext.split('++').join('+');
     this.searchedtext = this.searchedtext.split('++').join('+');
     // console.log(this.searchedtext);
-    return this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=1&limit=100')
+    return this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=1&limit=50')
       .subscribe(res => {
         // console.log(res);
+        this.videos = '';
         this.videos = res;
         this.videos = this.videos.list;
         if (this.videos.length == 0) {
@@ -76,8 +79,10 @@ export class SearchPage {
         // console.log(this.videos);
         // this.loading = "Home";
         loader.dismiss();
+        this.myadmob.showinter();
       },
         error => {
+          loader.dismiss();
           console.log("error : " + error.message);
         });
 
@@ -96,7 +101,7 @@ export class SearchPage {
     this.searchedtext = this.searchedtext.split('++').join('+');
     this.searchedtext = this.searchedtext.split('++').join('+');
     console.log(this.searchedtext);
-    return this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=1&limit=100')
+    return this.http.get('https://api.dailymotion.com/videos/?search="' + this.searchedtext + '"&fields=description,id,thumbnail_360_url,title&page=1&limit=50')
       .subscribe(res => {
         // console.log(res);
         this.videos = res;

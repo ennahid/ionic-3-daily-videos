@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlayerPageModule } from '../pages/player/player.module';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { Toast } from '@ionic-native/toast';
+import { AdmobSerivce } from '../pages/services/admob';
 
 
 
@@ -41,6 +42,7 @@ import { Toast } from '@ionic-native/toast';
     StatusBar,
     AdMobFree,
     SplashScreen,
+    AdmobSerivce,
     Toast,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

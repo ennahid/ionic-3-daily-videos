@@ -3,6 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { SearchPage } from '../search/search';
 import { PlayerPage } from '../player/player';
+import { AdmobSerivce } from '../services/admob';
 
 @Component({
   selector: 'page-home',
@@ -20,8 +21,9 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public http: HttpClient,
     public loadingCtrl: LoadingController,
-  ) {
-  }
+    public myadmob: AdmobSerivce)
+    {
+    }
 
   togglesearchbar()
   {
@@ -36,7 +38,8 @@ export class HomePage {
   doInfinite(infiniteScroll) {
     // this.navCtrl.push(PlayerPage);
     this.page++;
-    this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title,&page=' + this.page + '&limit=100')
+    this.myadmob.showinter();
+    this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title&page=' + this.page + '&limit=50')
       .subscribe(res => {
         this.more = res;
         for (let child of this.more.list) {
@@ -70,7 +73,7 @@ export class HomePage {
       content: 'Getting Videos...'
     });
     loader.present();
-    return this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title,&' + this.page + '&limit=10')
+    return this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title&' + this.page + '&limit=30')
       .subscribe(res => {
         this.videos = res;
         this.videos = this.videos.list;
