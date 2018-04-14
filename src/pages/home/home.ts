@@ -23,8 +23,7 @@ export class HomePage {
     public http: HttpClient,
     public loadingCtrl: LoadingController,
     public myadmob: AdmobSerivce)
-    {
-    }
+    { }
 
   togglesearchbar()
   {

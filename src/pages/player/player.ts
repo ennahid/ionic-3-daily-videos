@@ -4,13 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AdmobSerivce } from '../services/admob';
 
-/**
- * Generated class for the PlayerPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-player',

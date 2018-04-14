@@ -10,7 +10,7 @@ import { AdmobSerivce } from '../services/admob';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+ 
 @IonicPage()
 @Component({
   selector: 'page-start',
@@ -22,14 +22,12 @@ export class StartPage {
               public navParams: NavParams,
               private _RATE       : RateService,
               public myadmob: AdmobSerivce) {
- 
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StartPage');
     this._RATE.requestRating();
-    
   }
 
   gotocategory()

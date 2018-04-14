@@ -4,9 +4,7 @@ import { AppRate } from '@ionic-native/app-rate';
 
 @Injectable()
 export class RateService {
-    constructor(private _RATE 	: AppRate) {
-        
-    }
+    constructor(private _RATE 	: AppRate) { }
     requestRating()
     {
         this._RATE.preferences = {
@@ -35,7 +33,4 @@ export class RateService {
           };
        this._RATE.promptForRating(true);
     }
-
-    
-
 }
