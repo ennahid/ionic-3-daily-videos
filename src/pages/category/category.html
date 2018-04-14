@@ -1,0 +1,39 @@
+<!--
+  Generated template for the CategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<!-- 
+  <ion-navbar>
+    <ion-title>category</ion-title>
+  </ion-navbar> -->
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row style="height:90vh" align-items-center >
+          <ion-col>
+              
+          </ion-col>
+          <ion-col style="text-align:center" >
+        <button (click)="sendCategory('trending')" style="width : 250px; padding : 2em 2em;margin-bottom : 20px" large ion-button > 
+            <ion-icon md="md-trending-up"> &nbsp;</ion-icon> Trending
+         </button>
+        <button (click)="sendCategory('popular')" style="width : 250px; padding : 2em 2em;margin-bottom : 20px" large ion-button > 
+            <ion-icon md="md-flame"> &nbsp;</ion-icon> Popular 
+          </button>
+        <button (click)="sendCategory('home')" style="width : 250px; padding : 2em 2em;margin-bottom : 20px" large ion-button >
+            <ion-icon name="home"> &nbsp;</ion-icon> Home 
+          </button>
+        <!-- <button style="padding: 2em 3em !important;" ion-button large (click)='RateUs()'> Rate Us </button> -->
+          </ion-col>
+          <ion-col>
+         
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

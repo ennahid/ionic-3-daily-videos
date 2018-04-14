@@ -13,7 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlayerPageModule } from '../pages/player/player.module';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { Toast } from '@ionic-native/toast';
+import { AppRate } from '@ionic-native/app-rate';
 import { AdmobSerivce } from '../pages/services/admob';
+import { CategoryPage } from '../pages/category/category';
+import { StartPage } from '../pages/start/start';
+import { RateService } from '../pages/services/rate';
 
 
 
@@ -22,7 +26,10 @@ import { AdmobSerivce } from '../pages/services/admob';
     MyApp,
     HomePage,
     SearchPage,
-    PlayerPage
+    PlayerPage,
+    CategoryPage,
+    StartPage,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,14 +43,18 @@ import { AdmobSerivce } from '../pages/services/admob';
     MyApp,
     HomePage,
     SearchPage,
-    PlayerPage
+    PlayerPage,
+    CategoryPage,
+    StartPage,
   ],
   providers: [
     StatusBar,
     AdMobFree,
     SplashScreen,
     AdmobSerivce,
+    RateService,
     Toast,
+    AppRate,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

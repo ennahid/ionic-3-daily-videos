@@ -12,7 +12,7 @@ export class AdmobSerivce {
 
     showinter() {
         const interstitialConfig: AdMobFreeInterstitialConfig = {
-            id: 'ca-app-pub-8203097758766986/1995669576',
+            id: 'ca-app-pub-8203097758766986/2881502141',
         };  
         this.admobFree.interstitial.config(interstitialConfig)
         this.admobFree.interstitial.prepare()

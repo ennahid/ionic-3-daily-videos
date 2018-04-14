@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams ,LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { SearchPage } from '../search/search';
 import { PlayerPage } from '../player/player';
@@ -19,6 +19,7 @@ export class HomePage {
   searchbarvisible = false;
 
   constructor(public navCtrl: NavController,
+    private navParams: NavParams,
     public http: HttpClient,
     public loadingCtrl: LoadingController,
     public myadmob: AdmobSerivce)
@@ -73,7 +74,7 @@ export class HomePage {
       content: 'Getting Videos...'
     });
     loader.present();
-    return this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title&' + this.page + '&limit=30')
+    return this.http.get('https://api.dailymotion.com/videos?fields=description,id,thumbnail_360_url,title&' + this.page + '&limit=30'+this.navParams.get('category'))
       .subscribe(res => {
         this.videos = res;
         this.videos = this.videos.list;
